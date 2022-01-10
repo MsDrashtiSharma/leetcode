@@ -3,6 +3,7 @@ public:
     int majorityElement(vector<int>& nums) {
         int cnt=0;
             int ele=0;
+            //using more votig algo
             for(auto num:nums)
             {
                     if(cnt==0)
