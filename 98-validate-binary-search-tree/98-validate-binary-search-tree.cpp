@@ -15,7 +15,7 @@ public:
     {
         if(root == NULL) return true; // an empty BST is technically valid
         
-        if(!(root->val > left_bound && root->val < right_bound)) // Point 1.
+        if(root->val >= right_bound || root->val <= left_bound) // Point 1.
         {
             return false;
         }
