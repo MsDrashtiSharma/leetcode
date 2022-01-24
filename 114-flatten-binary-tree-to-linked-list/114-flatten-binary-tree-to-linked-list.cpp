@@ -29,8 +29,8 @@ public:
         stack<TreeNode*>s;
         s.push(root);
                 TreeNode*curr;
-                if(root==NULL)
-                        return ;
+               // if(root==NULL)
+                 //       return ;
                 while(!s.empty())
                 {         
                         curr=s.top();
