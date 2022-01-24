@@ -11,9 +11,9 @@
  */
 class Solution {
 public:
-        TreeNode * prev=NULL;
+   /*     TreeNode * prev=NULL;
     void flatten(TreeNode* root) {
-    //    tc o(n),sc o(n) recursive
+        tc o(n),sc o(n) recursive
             if(root==NULL)
                     return;
             flatten(root->right);
@@ -21,5 +21,31 @@ public:
     root->right=prev;
             root->left=NULL;
             prev=root;
-    }
+            */
+        
+        void flatten(TreeNode* root)
+        {
+        stack<TreeNode*>s;
+        s.push(root);
+                TreeNode*curr;
+                if(root==NULL)
+                        return ;
+                while(!s.empty())
+                {         
+                        curr=s.top();
+                        s.pop();
+                        if(curr->right)
+                                s.push(curr->right);
+                        if(curr->left)
+                                s.push(curr->left);
+                        if(!s.empty())
+                        {
+                                curr->right=s.top();
+                        }
+                        curr->left=NULL;
+                        
+                }
+        }
+        
+    
 };
