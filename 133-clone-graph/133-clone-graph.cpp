@@ -20,11 +20,13 @@ public:
 */
 
 class Solution {
+        private:unordered_map<Node*,Node*>m;
 public:
     Node* cloneGraph(Node* node) {
+            //bfs
         if(node==NULL)
                 return NULL;
-            unordered_map<Node*,Node*>m;
+          /*  unordered_map<Node*,Node*>m;
          queue<Node*>q;
             q.push(node);
             m[node]=new Node(node->val);
@@ -41,6 +43,16 @@ public:
                             }
                             m[curr]->neighbors.push_back(m[ng]);
                     }
+            }
+            return m[node];
+            */
+            
+            if(m.find(node)==m.end())
+            {
+               m[node]=new Node(node->val);
+                 for(auto ng:node->neighbors){
+                         m[node]->neighbors.push_back(cloneGraph(ng));
+                 }                       
             }
             return m[node];
             
