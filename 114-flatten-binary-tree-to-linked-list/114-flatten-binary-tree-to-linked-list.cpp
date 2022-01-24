@@ -23,7 +23,8 @@ public:
             prev=root;
             */
         
-        void flatten(TreeNode* root)
+       /* iterrative sol  tc =o(n),sc=o(n) ;
+       void flatten(TreeNode* root)
         {
         stack<TreeNode*>s;
         s.push(root);
@@ -46,6 +47,26 @@ public:
                         
                 }
         }
-        
+        */
+        void flatten(TreeNode* root){
+                if(root==NULL)
+                        return ;
+                TreeNode *curr=root;
+                TreeNode *prev;
+                while(curr!=NULL)
+                {
+                        if(curr->left!=NULL)
+                        {
+                             prev=curr->left;
+                                while(prev->right)
+                                        prev=prev->right;
+                                prev->right=curr->right;
+                                curr->right=curr->left;
+                                curr->left=NULL;
+                        }
+                        curr=curr->right;
+                }
+                
+        }
     
 };
