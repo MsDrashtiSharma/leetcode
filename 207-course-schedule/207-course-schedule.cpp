@@ -1,6 +1,6 @@
 class Solution {
 public:
-        bool dfs(int i,vector<int>adj[],bool v[],bool dv[])
+     /*   bool dfs(int i,vector<int>adj[],bool v[],bool dv[])
         {
              v[i]=true;
                 dv[i]=true;
@@ -37,6 +37,45 @@ bool canFinish(int numcourses, vector<vector<int>>& prerequisites) {
                     
             }
             return true;
+    }*/
+        bool canFinish(int numcourses, vector<vector<int>>& prerequisites) {
+    vector<vector<int>>adj(numcourses,vector<int>());
+            for(vector<int>&pre:prerequisites)
+                    adj[pre[0]].push_back(pre[1]);
+            vector<int>v(numcourses,0);
+            vector<int>dv(numcourses,0);
+            for(int i=0;i<numcourses;i++)
+            {
+                    if(!v[i])
+                    {
+                            if(dfs(i,adj,v,dv))
+                            {
+                                    return false;
+                            }
+                    }
+                    
+            }
+            return true;
     }
+        bool dfs(int i,vector<vector<int>>&adj,vector<int>&v,vector<int>&dv)
+        {
+             v[i]=1;
+                dv[i]=1;
+                for(auto it:adj[i])
+                {
+                        if(!v[it])
+                        {
+                                if(dfs(it,adj,v,dv))
+                                   return true;
+                        }
+                                   else if(dv[it])
+                                   {
+                                           return true;
+                                   }
+                        
+                }
+                                  dv[i]=0;
+                                   return false;
+        }
         
 };
