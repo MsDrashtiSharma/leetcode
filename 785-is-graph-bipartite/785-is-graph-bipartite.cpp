@@ -7,10 +7,10 @@ public:
             for(int i=0;i<n;i++)
             {
                     if(color[i]==-1)
-                    {color[i]=1;
+                    {
                     queue<int>q;
                      q.push(i);
-                    
+                    color[i]=1;
                      while(!q.empty())
                      {
                              int node=q.front();
