@@ -1,25 +1,6 @@
 class Solution {
 public:
-       vector<int> NSL(vector<int> heights){
-        vector<int> left;
-        stack<pair<int,int>> st;
-        for(int i=0;i<heights.size();i++){
-            if(st.empty())
-                left.push_back(-1);
-            else if(!st.empty() && st.top().first<heights[i])
-                left.push_back(st.top().second);
-            else if(!st.empty() && st.top().first>=heights[i]){
-                while(!st.empty() && st.top().first>=heights[i])
-                    st.pop();
-                if(st.empty())
-                    left.push_back(-1);
-                else 
-                    left.push_back(st.top().second);
-            }
-            st.push({heights[i],i});
-        }
-        return left;
-    }
+       
     vector<int> NSR(vector<int> heights){
         vector<int> right;
         stack<pair<int,int>> st;
@@ -41,6 +22,26 @@ public:
         reverse(right.begin(),right.end());
         return right;
     }
+        vector<int> NSL(vector<int> heights){
+        vector<int> left;
+        stack<pair<int,int>> st;
+        for(int i=0;i<heights.size();i++){
+            if(st.empty())
+                left.push_back(-1);
+            else if(!st.empty() && st.top().first<heights[i])
+                left.push_back(st.top().second);
+            else if(!st.empty() && st.top().first>=heights[i]){
+                while(!st.empty() && st.top().first>=heights[i])
+                    st.pop();
+                if(st.empty())
+                    left.push_back(-1);
+                else 
+                    left.push_back(st.top().second);
+            }
+            st.push({heights[i],i});
+        }
+        return left;
+    }
     int largestRectangleArea(vector<int>& heights) {
         vector<int> r = NSR(heights);
         vector<int> l = NSL(heights);
@@ -52,9 +53,11 @@ public:
         }
         
         for(int i=0;i<heights.size();i++){
-            mx=max(mx,heights[i]*width[i]);
+                heights[i]=heights[i]*width[i];
+           
         }
-        
+          for(int i=0;i<heights.size();i++)
+         mx=max(mx,heights[i]);
         return mx;
     }
 
