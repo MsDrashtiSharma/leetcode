@@ -24,7 +24,7 @@ public:
                             int node=q.front();
                             q.pop();
                             for(auto a:adj[node])
-                            {
+                            {//we use erase we are using unorered_set in creating adj list not like normal we can npt use vector<vector<int>> to create adj list bcoz in thi sol we havev to remove eleemnet from list serially which is not poosible in vector<vector<int>> bcoz it use pop_back to delete the last node not the spcified or a particaluar node which we want so we use unorded_set bcoz of which we use erase 
                                     adj[a].erase(node);
                                     if(adj[a].size()==1)
                                             q.push(a);
