@@ -9,22 +9,32 @@
  * };
  */
 class Solution {
-public:
+public: ListNode*reverse(ListNode* head){
+        ListNode*curr=head;
+               ListNode*prev=NULL,*next=NULL;
+            while(curr!=NULL)
+            {
+                    next=curr->next;
+                    curr->next=prev;
+                    prev=curr;
+                    curr=next;
+            }
+        head=prev;
+        return head;
+}
     int getDecimalValue(ListNode* head) {
-           /* int sum=0;
-            ListNode *p;
-      for(p=head;p!=NULL;p=p->next)
-      {     if(p->val==0)
-              sum=sum+p->val;
-              else
-              sum=sum+pow(2,p->val);
-      }
-            return sum;*/
-            int res=0;
-        while(head!=NULL){
-            res=res*2+head->val;
-            head=head->next;
-        }
-        return res;
+         
+            ListNode *temp=reverse(head);
+            int total=0, i=0,x;
+            while(temp!=NULL)
+            {x=temp->val;
+                    total=total+pow(2,i)*x;
+                    i++;
+                    temp=temp->next;
+            }
+            return total;
+         
+            
+            
     }
 };
