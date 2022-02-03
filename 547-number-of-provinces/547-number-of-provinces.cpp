@@ -23,8 +23,8 @@ public:
                                     continue;
                             int src=findparent(parent,i);
                             int des=findparent(parent,j);
-                            if(c[i][j])
-                            { if(src!=des)
+                           // if(c[i][j])
+                            { if(src!=des&&(c[i][j]))
                             {
                                     ans--;
                                     parent[src]=des;
