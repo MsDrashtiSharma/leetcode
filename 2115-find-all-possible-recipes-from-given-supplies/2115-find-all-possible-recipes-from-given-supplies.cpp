@@ -53,3 +53,6 @@ public:
         return ans;
     }
 };
+//recipes = ["sandwich","bread","pizza"], ingredients = [["bread","meat"],["yeast","flour"],
+//["sandwich","meat","bread","corn"]], supplies = ["yeast","flour","meat"]
+//Output: ["bread","sandwich"]
