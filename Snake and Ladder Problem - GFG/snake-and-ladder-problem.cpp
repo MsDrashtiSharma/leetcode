@@ -13,9 +13,9 @@ public:
         // code here
        
      int moves[35];
-     bool vis[35];
+     int vis[35];
      memset(moves,-1,sizeof(moves));
-     memset(vis,false,sizeof(vis));
+     memset(vis,-1,sizeof(vis));
      for(int i=0;i<2*N;i+=2)
      {
         moves[arr[i]]=arr[i+1]; 
@@ -23,7 +23,7 @@ public:
       queue<pair<int,int>>q;
         pair<int,int>p;
      q.push({1,0});
-     vis[1]=true;
+     vis[1]=1;
      while(!q.empty())
      {
          p=q.front();
@@ -36,10 +36,10 @@ public:
         for(int i=cell+1;i<=cell+6 && i<=30;i++)
              {
                  pair<int,int>pp;
-                 if(!vis[i])
+                 if(vis[i]==-1)
                  {
                      pp.second=turn+1;
-                     vis[i]=true;
+                     vis[i]=1;
                      if(moves[i]!=-1)
                      {
                          pp.first=moves[i];
