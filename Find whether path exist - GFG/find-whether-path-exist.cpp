@@ -9,38 +9,38 @@ class Solution
 {
     public:
     //Function to find whether a path exists from the source to destination.
-    void checkpath(vector<vector<int>>& grid,  vector<vector<bool>> &vis,int x, int y )
+    void solve(vector<vector<int>>&grid,vector<vector<bool>>&visited,int a, int b)
     {
         int n=grid.size();
-        if(x<0|| x>=n || y<0 || y>=n || vis[x][y]==true || grid[x][y]==0)
-           return;
-        vis[x][y]=true;
-        checkpath(grid, vis, x+1, y); //down
-        checkpath(grid, vis, x-1, y); //up
-        checkpath(grid, vis, x, y+1); // left
-        checkpath(grid, vis, x, y-1); // right
+        if(a<0 || a>=n || b<0 || b>=n || visited[a][b]==true || grid[a][b]==0)
+        return;
+        visited[a][b]=true;
+        solve(grid,visited,a+1,b);
+        solve(grid,visited,a-1,b);
+        solve(grid,visited,a,b+1);
+        solve(grid,visited,a,b-1);
     }
-    
-bool is_Possible(vector<vector<int>>& grid) 
+    bool is_Possible(vector<vector<int>>& grid) 
     {
-        int n=grid.size(), m=grid.size(), x, y, tx, ty;
-        
-        vector<vector<bool>> vis(n, vector<bool>(n, false));
-        
-        for(int i=0; i<n; i++)
+        //code here
+        int n=grid.size();
+        int m=grid[0].size();
+        int a,b,tx,ty;
+        vector<vector<bool>>visited(n,vector<bool>(n,false));
+        for(int i=0;i<n;i++)
         {
-            for(int j=0; j<m; j++)
+            for(int j=0;j<m;j++)
             {
-                if(grid[i][j]==1){
-                    x=i, y=j;
-                }
-                if(grid[i][j]==2){
-                    tx=i, ty=j;
-                }
+                if(grid[i][j]==1)
+                {a=i;b=j;}
+                if(grid[i][j]==2)
+               { tx=i;ty=j;}
+                
             }
         }
-        checkpath(grid, vis, x, y);
-        return vis[tx][ty];
+        solve(grid,visited,a,b);
+        return visited[tx][ty];
+        
     }
 };
 
