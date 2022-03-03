@@ -11,12 +11,12 @@ void solve(int index,int k,vector<int>v,int &ans)
     if(v.size()==1)
     {
         ans=v[0];
-        return ;
+        return  ;
     }
      index=(index+k)%v.size();
     v.erase(v.begin()+index);
     solve(index,k,v,ans);
-    return ;
+    
 }
 class Solution
 {
