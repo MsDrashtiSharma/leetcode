@@ -105,8 +105,8 @@ public:
     
     
   */  
-    
-     int maxProfit(int k, vector<int>& prices) 
+    //tabulation of transcation idea method watch lecture 38 last part in order to understand
+   /*  int maxProfit(int k, vector<int>& prices) 
     {  int n=prices.size();
        vector<vector<int>>dp(n+1,vector<int>(2*k+1,0));
          
@@ -127,8 +127,31 @@ public:
           }
      return dp[0][0];
       }
-   
+   */
     
+    //space optimzation of transcation idea method watch lecture 38 last part in order to understand
+    int maxProfit(int k, vector<int>& prices) 
+    {  int n=prices.size();
+     vector<int>after(2*k+1,0);
+          vector<int>curr(2*k+1,0);
+          for(int ind=n-1;ind>=0;ind--)
+          {
+              for(int transno=2*k-1;transno>=0;transno--)
+              {
+                  if(transno%2==0)
+                 {
+                      curr[transno]=max(-prices[ind]+after[transno+1],0+after[transno]);
+                  }
+                  else
+                  {
+                     curr[transno]=max(prices[ind]+after[transno+1],0+after[transno]);
+                  }
+
+              }
+              after=curr;
+          }
+     return after[0];
+      }
     
     
     
