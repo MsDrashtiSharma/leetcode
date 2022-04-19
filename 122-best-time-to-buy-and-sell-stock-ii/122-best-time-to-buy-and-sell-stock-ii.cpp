@@ -50,7 +50,7 @@ public:
      */
      
      //space optimiazation
-    int maxProfit(vector<int>& prices) {
+  /*  int maxProfit(vector<int>& prices) {
        int n=prices.size();
         vector<int>ahead(2,0),curr(2,0);
          ahead[0]=ahead[1]=0;
@@ -72,6 +72,32 @@ public:
                ahead=curr;
            }
          return ahead[1];
+     }*/
+    
+    
+    //  4 variable optimization
+    
+    
+     int maxProfit(vector<int>& prices) {
+       int n=prices.size();
+        long aheadnotbuy,aheadbuy,currbuy,currnotbuy;
+         aheadnotbuy=aheadbuy=0;
+         
+           for(int ind=n-1;ind>=0;ind--)
+           {
+              
+                            currbuy=max(-prices[ind]+aheadnotbuy,0+aheadbuy);
+                        
+                     
+                       
+                               currnotbuy=max(prices[ind]+aheadbuy,0+aheadnotbuy);            
+                       
+                    
+               
+               aheadbuy=currbuy;
+               aheadnotbuy=currnotbuy;
+           }
+         return aheadbuy;
      }
     
 };
