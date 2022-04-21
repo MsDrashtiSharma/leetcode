@@ -86,8 +86,8 @@ public:
        return maxi;
    }*/
        
-       
-       int lengthOfLIS(vector<int>& nums) {
+      //to print longest incresing subsequence   tc=o(n^2) sc=o(n) 
+   /*    int lengthOfLIS(vector<int>& nums) {
        int n=nums.size();
            int maxi=1;
            int lastindex=0;
@@ -124,6 +124,27 @@ public:
        
        
     
+    */
     
+    int lengthOfLIS(vector<int>& nums) {
+       int n=nums.size();
+       vector<int>temp;
+        temp.push_back(nums[0]);
+        int len=1;
+        for(int i=1;i<n;i++)
+        {
+            if(nums[i]>temp.back())
+            {
+                temp.push_back(nums[i]);
+                len++;
+            }
+            else
+            {
+                auto ind=lower_bound(temp.begin(),temp.end(),nums[i])-temp.begin();
+                temp[ind]=nums[i];
+            }
+        }
+    return len;
+    }
     
 };
