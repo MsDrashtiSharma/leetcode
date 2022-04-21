@@ -43,7 +43,7 @@ public:
         */
     
       //tc=o(n^2)   sc=o(n*2)
-    int lengthOfLIS(vector<int>& nums) {
+  /*  int lengthOfLIS(vector<int>& nums) {
        int n=nums.size();
        vector<int>after(n+1,0),curr(n+1,0);
         for(int ind=n-1;ind>=0;ind--)
@@ -62,7 +62,35 @@ public:
         }
         return after[-1+1];
     }
-      
+    */
+    
+    
+    
+//USING TABULATION ALGORITHM OR TABULATION ANOTHER APPROACH
+   int lengthOfLIS(vector<int>& nums) {
+       int n=nums.size();
+       vector<int>dp(n,1);
+       int maxi=1;
+       for(int ind=0;ind<n;ind++)
+      {
+           for(int prev_ind=0;prev_ind<ind;prev_ind++)
+           {
+               if(nums[prev_ind]<nums[ind])
+               {
+                   dp[ind]=max(dp[ind],1+dp[prev_ind]);
+               }
+           }
+           maxi=max(maxi,dp[ind]);
+       }
+       
+       return maxi;
+   }
+       
+       
+       
+       
+       
+       
     
     
     
