@@ -9,7 +9,7 @@ public:
         int second=0;
        while(first<s1.size())
        {
-           if(second<s2.size()&&s1[first]==s2[second])
+           if(s1[first]==s2[second])
            {
                first++;
                second++;
@@ -22,24 +22,17 @@ public:
         if(first==s1.size()&&second==s2.size())return true;
         else return false;
     }
-   //  bool compare(string &s1,string &s2)
-    //{
-      //return s1.size()<s2.size();
-    //}
-   // bool compare(const string& c1, const string& c2) {
-    
-    //return c1<c2;
+  
+   
     static bool comp(string &a, string &b){
         if(a.size() < b.size()){
             return true;
         }
         return false;
     }
-//}
+
     int longestStrChain(vector<string>& words) 
     {
-     //sort(words.begin(), words.end(), compare);
-      //  sort(begin(words), end(words), [] (string &a, string &b) { return a.size() < b.size(); });
              sort(words.begin(),words.end(),comp);
 
         int n=words.size();
