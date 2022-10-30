@@ -22,26 +22,31 @@ public:
     {
         int n=prices.size();
         vector<vector<int>>dp(n+2,vector<int>(2,0));
+        vector<int>after1(2,0);
+        vector<int>after(2,0);
+        vector<int>curr(2,0);
          for(int ind=n-1;ind>=0;ind--)
          { int profit=0;
              for(int buy=0;buy<=1;buy++)
              {
                  if(buy)
                 {
-                   profit=max(-prices[ind]+dp[ind+1][0],dp[ind+1][1]); 
+                   profit=max(-prices[ind]+after[0],after[1]); 
                 }
                 else
                 {
-                    profit=max(prices[ind]+dp[ind+2][1],dp[ind+1][0]);
+                    profit=max(prices[ind]+after1[1],after[0]);
                 }
-                 dp[ind][buy]=profit;
+                 curr[buy]=profit;
              }
+          after1=after;
+          after=curr;
          }
         
         
         
         
         
-        return dp[0][1];
+        return curr[1];
     }
 };
