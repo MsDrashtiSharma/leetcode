@@ -30,6 +30,6 @@ public:
             }
             after=curr;
         }
-        return curr[-1+1];
+        return after[-1+1];
     }
 };
