@@ -24,7 +24,7 @@ class Solution {
             int node=it.second.first;
             int dis=it.second.second;
             q.pop();
-            if(stops>K)continue;
+            if(stops>K)break;
             for(auto iter:adj[node])
             {
                 int adjnode=iter.first;
