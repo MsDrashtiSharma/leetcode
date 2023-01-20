@@ -13,31 +13,56 @@ class Solution
     int findSum(int a[], int n)
     {
     	//code here.
-    	int max,min;
-    	if(n==1)
-    	return a[0]+a[0];
-    	if(a[0]>a[1])
+    	int i,max,min;
+    	if(n%2==0)
     	{
-    	   max=a[0];
-    	     min=a[1];
+    	    if(a[0]>a[1])
+    	    {
+    	        max=a[0];
+    	        min=a[1];
+    	    }
+    	    else
+    	    {
+    	        min=a[0];
+    	        max=a[1];
+    	    }
+    	    i=2;
     	}
     	else
     	{
-    	     max=a[1];
     	    min=a[0];
+    	    max=a[0];
+    	    i=1;
     	}
-    	for(int i=2;i<n;i++)
+    	while(i<n-1)
     	{
-    	    if(a[i]>max)
+    	    if(a[i]>a[i+1])
     	    {
-    	       max=a[i]; 
+    	        if(a[i]>max)
+    	        {
+    	            max=a[i];
+    	        }
+    	        if(a[i+1]<min)
+    	        {
+    	            min=a[i+1];
+    	        }
     	    }
-    	    else if(a[i]<min)
+    	    else
     	    {
-    	        min=a[i];
+    	        if(a[i+1]>max)
+    	        {
+    	            max=a[i+1];
+    	            
+    	        }
+    	        if(a[i]<min)
+    	        {
+    	            min=a[i];
+    	        }
     	    }
+    	    i+=2;
+    	    
     	}
-    	return max+min;
+    	return min+max;
     }
 
 };
