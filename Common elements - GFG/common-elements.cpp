@@ -7,94 +7,42 @@ using namespace std;
 class Solution
 {
     public:    
-       vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
+       vector <int> commonElements (int a[], int b[], int c[], int n1, int n2, int n3)
         {
             //code here.
-           //code here.
-
-            vector<int> ans1;
-
-            unordered_map<int,bool> mp1;
-
-            unordered_map<int,bool> mp2;
-
-            
-
-            for(int i=0;i<n1;i++)
-
+            int i=0,j=0,k=0;
+            vector<int>v;
+            while(i<n1&&j<n2&&k<n3)
             {
-
-                mp1[A[i]]=true;
-
-            }
-
-            for(int i=0;i<n2;i++)
-
-            {
-
-                if(mp1.find(B[i])!=mp1.end())
-
+                if(a[i]==b[j]&&b[j]==c[k])
                 {
-
-                    ans1.push_back(B[i]);
-
+                    v.push_back(a[i]);
+                    i++;
+                    j++;
+                    k++;
                 }
-
-            }
-
-            vector<int> ans2;
-
-            for(int i=0;i<ans1.size();i++)
-
-            {
-
-                mp2[ans1[i]]=true;
-
-            }
-
-            
-
-            for(int i=0;i<n3;i++)
-
-            {
-
-                if(mp2.find(C[i])!=mp2.end())
-
+                else if(a[i]<b[j])
                 {
-
-                    ans2.push_back(C[i]);
-
+                    i++;
                 }
-
+                else if(b[j]<c[k])
+                {
+                    j++;
+                }
+                else
+                k++;
+                int xx=a[i-1];
+                while(a[i]==xx)
+                i++;
+                int yy=b[j-1];
+                while(b[j]==yy)
+                j++;
+                int zz=c[k-1];
+                while(c[k]==zz)
+                k++;
             }
-
-            
-
-          unordered_set<int> st;
-
-          for(int i=0;i<ans2.size();i++)
-
-          {
-
-              st.insert(ans2[i]);
-
-          }
-
-          vector<int> ansfin;
-
-          for(auto it: st)
-
-          {
-
-              ansfin.push_back(it);
-
-          }
-
-             sort(ansfin.begin(),ansfin.end());
-
-             return ansfin;
-
-        }
+            if(v.size()==0)return {-1};
+            return v;}
 
 };
 
