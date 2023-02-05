@@ -9,21 +9,19 @@ using namespace std;
 
 class Solution{
 public:
-int f(int i,int j,int arr[],vector<vector<int>>&dp)
-{
+int f(int i,int j,int arr[])
+{   int mini=1e9;
     if(i==j)return 0;
-    if(dp[i][j]!=-1)
-    return dp[i][j];
-    int mini=1e9;
     for(int k=i;k<j;k++)
     {
-        int steps=arr[i-1]*arr[k]*arr[j]+f(i,k,arr,dp)+f(k+1,j,arr,dp);
-        if(steps<mini)
-        {
-            mini=steps;
-        }
+        int steps=arr[i-1]*arr[k]*arr[j]+f(i,k,arr)+f(k+1,j,arr);
+    
+    if(steps<mini)
+    {
+      mini=steps;
     }
-    return dp[i][j]=mini;
+    }
+    return mini;
 }
     int matrixMultiplication(int n, int arr[])
     {
@@ -35,20 +33,18 @@ int f(int i,int j,int arr[],vector<vector<int>>&dp)
         {
             for(int j=i+1;j<n;j++)
             {
-                
-                int mini=1e9;
+                 int mini=1e9;
                 
                 for(int k=i;k<j;k++)
                 {
                     int steps=arr[i-1]*arr[k]*arr[j]+dp[i][k]+dp[k+1][j];
-                    if(steps<mini)
-                    {
-                        mini=steps;
-                    }
-                }
                 
-            dp[i][j]=mini;
-        
+                if(steps<mini)
+                {
+                  mini=steps;
+                }
+                }
+                dp[i][j]=mini;
             }
         }
         return dp[1][n-1];
