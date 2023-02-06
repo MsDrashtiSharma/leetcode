@@ -23,22 +23,24 @@ class Solution
         // int n=s1.size();
         // int m=s2.size();
         vector<vector<int>>dp(x+1,vector<int>(y+1,0));
-        for(int i=0;i<=x;i++)
-        dp[i][0]=0;
+        vector<int>prev(y+1,0),curr(y+1,0);
+        // for(int i=0;i<=x;i++)
+        // dp[i][0]=0;
         for(int j=0;j<=y;j++)
-        dp[0][j]=0;
+        prev[j]=0;
         for(int i=1;i<=x;i++)
         {
             for(int j=1;j<=y;j++)
             {
             //   if(dp[i][j]!=-1)dp[i][j];
                 if(s1[i-1]==s2[j-1])
-                dp[i][j]=1+dp[i-1][j-1];
+                curr[j]=1+prev[j-1];
                 else
-                dp[i][j]=max(dp[i-1][j],dp[i][j-1]);  
+                curr[j]=max(prev[j],curr[j-1]);  
             }
+            prev=curr;
         }
-        return dp[x][y];
+        return prev[y];
     }
 };
 
