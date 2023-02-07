@@ -23,8 +23,22 @@ class Solution
     int longestSubsequence(int n, int a[])
     {
        // your code herer
-       vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
-       return f(0,-1,a,n,dp);
+       vector<vector<int>>dp(n+1,vector<int>(n+1,0));
+       vector<int>front(n+1,0),curr(n+1,0);
+       for(int i=n-1;i>=0;i--)
+       {
+           for(int previ=i-1;previ>=-1;previ--)
+           {
+                int len=front[previ+1];
+                if(previ==-1||a[i]>a[previ])
+                {
+                     len=max(len,1+front[i+1]);
+                }
+                 curr[previ+1]=len;
+           }
+          front=curr;
+       }
+       return curr[-1+1];
     }
 };
 
