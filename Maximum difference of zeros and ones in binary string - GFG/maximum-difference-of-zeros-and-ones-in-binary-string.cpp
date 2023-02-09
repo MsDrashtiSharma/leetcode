@@ -7,17 +7,33 @@ using namespace std;
 //User function template for C++
 class Solution{
 public:	
-	int maxSubstring(string s)
+	int maxSubstring(string S)
 	{
-	     int cur=0,maxi=0;
-         for(int i=0; i<s.size(); i++ ) {
-             if(s[i]=='1') cur--;
-             else cur++;
-             maxi=max(maxi,cur);
-             if(cur<0) cur=0;
-         }
-         if(!maxi) return -1;
-         return maxi;
+	    // Your code goes here
+	    int curr=0;
+	    int maxcurr=INT_MIN;
+	    for(int i=0;i<S.size();i++)
+	    {
+	         if(S[i]=='1')
+              {
+                  curr--;
+              }
+              else
+              {
+                  curr++;
+              }
+              if(maxcurr<curr)
+              {
+                  maxcurr=curr;
+              }
+              if(curr<0)
+              {
+                 curr=0; 
+              }
+	    }
+	    return maxcurr;
+	   
+	    
 	}
 };
 
