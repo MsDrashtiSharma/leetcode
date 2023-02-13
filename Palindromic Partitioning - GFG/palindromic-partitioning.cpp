@@ -40,9 +40,9 @@ int f(int i,int n, string s,vector<int>&dp)
         int n=str.size();
         vector<int>dp(n+1,0);
         
-        for(int i=n;i>=0;i--)
+        for(int i=n-1;i>=0;i--)
         {
-            if(i==n)continue;
+        //     if(i==n)continue;
             int mincost=INT_MAX;
             
             for(int j=i;j<n;j++)
