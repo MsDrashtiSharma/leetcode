@@ -38,8 +38,25 @@ int f(int i,int n, string s,vector<int>&dp)
     {
         // code here
         int n=str.size();
-        vector<int>dp(n+1,-1);
-        return f(0,n,str,dp)-1;
+        vector<int>dp(n+1,0);
+        
+        for(int i=n;i>=0;i--)
+        {
+            if(i==n)continue;
+            int mincost=INT_MAX;
+            
+            for(int j=i;j<n;j++)
+            {
+                if(ispalindrome(i,j,str))
+                {
+                   int cost=1+dp[j+1];
+                    mincost=min(cost,mincost);
+                }
+            }
+            dp[i]=mincost;
+            
+        }
+        return dp[0]-1;
         
     }
 };
