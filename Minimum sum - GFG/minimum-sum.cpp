@@ -66,7 +66,7 @@ public:
                 s2+=to_string(arr[i]);
             }
         }
-        return sumof(s1,s2);
+        return sumof(s2,s1);
     }
 };
 
