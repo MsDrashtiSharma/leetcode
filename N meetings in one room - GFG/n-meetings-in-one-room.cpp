@@ -11,26 +11,48 @@ class Solution
     int maxMeetings(int start[], int end[], int n)
     {
         // Your code here
-            vector<pair<int,int>> meeting_time;
-       for( int i = 0 ; i < n ; i ++)
-       {
-           meeting_time.push_back({end[i],start[i]});
-       }
-       sort(meeting_time.begin(),meeting_time.end());
-       int count = 1; 
-       int prev = 0;
-       for( int i = 0 ; i< n ; i ++)
-       {
-           int prev_end = meeting_time[prev].first;
-           int curr_start = meeting_time[i].second;
+        vector<pair<int,int>>meetings;
+        for(int i=0;i<n;i++)
+        {
+            meetings.push_back({end[i],start[i]});
+        }
+        sort(meetings.begin(),meetings.end());
+        int count=1;
+        int prev=0;
+        for(int i=0;i<n;i++)
+        {
+            int prev_end=meetings[prev].first;
+            int curr_start=meetings[i].second;
+            if(curr_start>prev_end)
+            {
+                count++;
+                prev=i;
+            }
+        }
+        return count;
+        
+       
+        
+    //         vector<pair<int,int>> meeting_time;
+    //   for( int i = 0 ; i < n ; i ++)
+    //   {
+    //       meeting_time.push_back({end[i],start[i]});
+    //   }
+    //   sort(meeting_time.begin(),meeting_time.end());
+    //   int count = 1; 
+    //   int prev = 0;
+    //   for( int i = 0 ; i< n ; i ++)
+    //   {
+    //       int prev_end = meeting_time[prev].first;
+    //       int curr_start = meeting_time[i].second;
            
-           if(curr_start > prev_end)
-           {
-               count++;
-               prev = i ;
-           }
-       }
-       return count;
+    //       if(curr_start > prev_end)
+    //       {
+    //           count++;
+    //           prev = i ;
+    //       }
+    //   }
+    //   return count;
     }
 };
 
