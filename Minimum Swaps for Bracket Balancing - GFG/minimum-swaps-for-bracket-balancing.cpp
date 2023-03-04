@@ -6,31 +6,51 @@ using namespace std;
 class Solution{   
 public:
     int minimumNumberOfSwaps(string s){
-        vector<int>v;
-        int n=s.size();
-        for(int i=0;i<n;i++)
-        if(s[i]=='[')v.push_back(i);
+        // vector<int>v;
+         int n=s.size();
+        // for(int i=0;i<n;i++)
+        // if(s[i]=='[')v.push_back(i);
         
-        int ind=0;
+        // int ind=0;
+        // int ans=0;
+        // int count=0;
+        // for(int i=0;i<n;i++)
+        // {
+        //     if(s[i]=='[')
+        //     {
+        //         count++;
+        //         ind++;
+        //     }
+        //     else
+        //     {
+        //         count--;
+        //         if(count<0)
+        //         {
+        //             ans+=v[ind]-i;
+        //             swap(s[i],s[v[ind]]);
+        //             count=1;
+        //             ind++;
+        //         }
+        //     }
+        // }
+        // return ans;
         int ans=0;
-        int count=0;
+        int open=0;
+        int close=0;
+        int fault=0;
         for(int i=0;i<n;i++)
         {
-            if(s[i]=='[')
+            if(s[i]==']')
             {
-                count++;
-                ind++;
+                close++;
+                fault=close-open;
             }
             else
             {
-                count--;
-                if(count<0)
-                {
-                    ans+=v[ind]-i;
-                    swap(s[i],s[v[ind]]);
-                    count=1;
-                    ind++;
-                }
+              open++;
+              if(fault>0)
+              ans+=fault;
+              fault--;
             }
         }
         return ans;
