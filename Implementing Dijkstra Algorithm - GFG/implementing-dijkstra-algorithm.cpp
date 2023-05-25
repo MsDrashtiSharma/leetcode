@@ -8,37 +8,32 @@ class Solution
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
-    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    vector <int> dijkstra(int v, vector<vector<int>> adj[], int s)
     {
-     
         // Code here
-        set<pair<int,int>>st;
-        vector<int>dist(V,1e9);
-        st.insert({0,S});
-        dist[S]=0;
-        while(!st.empty())
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;
+        vector<int>dis(v,1e9);
+        dis[s]=0;
+        pq.push({0,s});
+        while(!pq.empty())
         {
-            auto it=*(st.begin());
-            int node=it.second;
-            int dis=it.first;
-            st.erase(it);
-            
-            for(auto i:adj[node])
+            int distance=pq.top().first;
+            int node=pq.top().second;
+            pq.pop();
+            for(auto it:adj[node])
             {
-                int adjnode=i[0];
-                int adjwei=i[1];
-                if(dis+adjwei<dist[adjnode])
+                int adjnode=it[0];
+                int weight=it[1];
+                if(distance+weight<dis[adjnode])
                 {
-                    if(dist[adjnode]!=1e9)
-                    {
-                        st.erase({dist[adjnode],adjnode});
-                    }
-                   dist[adjnode]=dis+adjwei;
-                   st.insert({dist[adjnode],adjnode});
+                    dis[adjnode]=distance+weight;
+                    pq.push({dis[adjnode],adjnode});
                 }
             }
         }
-        return dist;
+        return dis;
+        
+        
     }
 };
 
