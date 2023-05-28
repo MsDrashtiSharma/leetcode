@@ -15,29 +15,29 @@ class Solution
 {
 public:
 unordered_map<string,int>dp;
- int solve(string s, vector<string>&worddict)
+int solve(string s,vector<string>&worddict)
+{
+    int sz=s.size();
+    if(sz==0)return 1;
+    if(dp[s]!=0)return dp[s];
+    for(int i=1;i<=sz;i++)
     {
-        int sz=s.size();
-        if(sz==0)return 1;
-        if(dp[s]!=0)return dp[s];
-        for(int i=1;i<=sz;i++)
+        int f=0;
+        string ss=s.substr(0,i);
+        for(int j=0;j<worddict.size();j++)
         {
-            int f=0;
-            string ss=s.substr(0,i);
-            for(int j=0;j<worddict.size();j++)
+            if(ss.compare(worddict[j])==0)
             {
-                if(ss.compare(worddict[j])==0)
-                {
-                    f=1;
-                    break;
-                }
+                f=1;
+                break;
             }
-            if(f==1&&solve(s.substr(i,sz-i),worddict)==1)return dp[s]=1;
-            
         }
-        return dp[s]=-1;
+        if(f==1&&solve(s.substr(i,sz-i),worddict)==1)return dp[s]=1;
     }
+    return dp[s]=-1;
+}
     int wordBreak(string A, vector<string> &B) {
+        //code here
         int x=solve(A,B);
         if(x==1)return 1;
         return 0;
