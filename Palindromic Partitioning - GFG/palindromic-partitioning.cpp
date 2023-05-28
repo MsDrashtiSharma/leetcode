@@ -34,13 +34,28 @@ bool ispalindrome(int i,int j,string s)
         }
         return dp[i]=mincost;
     }
-    int palindromicPartition(string str)
+    int palindromicPartition(string s)
     {
         // code here
         
-        int n=str.size();
-        vector<int>dp(n+1,-1);
-        return f(0,n,str,dp)-1;
+        int n=s.size();
+        vector<int>dp(n+1,0);
+        for(int i=n;i>=0;i--)
+        {
+           if(i==n)continue;
+        int mincost=INT_MAX;
+       
+        for(int j=i;j<=n;j++)
+        {
+            if(ispalindrome(i,j,s))
+            {
+                int cost=1+dp[j+1];
+                mincost=min(mincost,cost);
+            }
+        }
+        dp[i]=mincost;  
+        }
+        return dp[0]-1;
         
     }
 };
